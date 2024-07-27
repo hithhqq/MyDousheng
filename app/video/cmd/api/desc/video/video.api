@@ -1,0 +1,56 @@
+syntax = "v1"
+
+info (
+    title: "视频实例"
+    author: "yeye"
+    version: "v1"
+)
+import(
+    "/home/yeye/workspace/MyDouSheng/app/user/cmd/api/desc/user/user.api"
+)
+type  Video {
+    VideoId string `json:"video_id"`
+    Author User    `json:"author"`
+    PlayUrl string  `json:"play_url"`
+    CoverUrl string `json:"cover_url"`
+    FavoriteCount string `json:"favorite_count"`
+    CommentCount string `json:"comment_count"`
+    IsFavorite bool `json:"is_favorite"`
+    Title string `json:"title"`
+}
+
+type (
+    GetFeedReq {
+        Token string `json:"token"`
+        LatestTime string `json:"latest_time"`
+    }
+    GetFeedResp {
+        StatusCode int64 `json:"status_code"`
+        StatusMsg string `json:"status_msg"`
+        VideoList []Video `json:"video_list"`
+    }
+)
+
+type (
+    PublishVideoReq {
+        Data string `json:"data"`
+        Title string `json:"title"`
+    }
+    PublishVideoResp {
+        StatusCode int64 `json:"status_code"`
+        StatusMsg string `json:"status_msg"`
+    }
+)
+
+type (
+    GetVideoListReq {
+        Token string `json:"token"`
+        Userid int64 `json:"user_id"`
+    }
+    GetVideoListResp {
+        StatusCode int64 `json:"status_code"`
+        StatusMsg string `json:"status_msg"`
+        VideoList []Video `json:"video_list"`
+    }
+
+)

@@ -1,0 +1,75 @@
+syntax = "v1"
+
+import(
+    "/home/yeye/workspace/MyDouSheng/app/user/cmd/api/desc/user/user.api"
+)
+info(
+    title: "关系实例"
+    author: "yeye"
+    version: "v1"
+)
+type Friend {
+    UserId         int64  `json:"id"` // 用户的唯一标识
+	Username       string `json:"name"` // 用户名称
+	FollowingCount int64    `json:"follow_count"` // 关注总数
+	FollowerCount  int64    `json:"follower_count"` // 粉丝总数
+	Avator         string `json:"avator"` // 头像
+	BackgroundImage string `json:"background_image"`
+	IsFollow        bool   `json:"is_follow"`     //
+	Signature      string `json:"signature"` // 个人简介
+	TotalFavorited int64  `json:"total_favorited"` // 获赞数
+	WorkCount 	   int64     `json:"work_count"` // 作品总数
+	FavoriteCount  int64      `json:"favorite_count"` // 点赞数
+    Message string `json:"message"` // 和好友最新聊天记录
+    MsgType int64 `json:"msgType"`  // message消息的类型，0 => 当前请求用户接收的消息， 1 => 当前请求用户发送的消息
+}
+
+type Follow {
+    UserId         int64  `json:"id"` // 用户的唯一标识
+	Username       string `json:"name"` // 用户名称
+    FollowerCount  int64   `json:"follower_count"` // 粉丝总数
+    IsFollow       bool    `json:"is_follow"`
+}
+type (
+    GetAttentionReq{
+        Token string `json:"token"`
+        ToUserId int64 `json:"to_user_id"`
+        ActionType int64 `json:"action_type"`
+    }
+    GetAttentionResp{
+        StatusMsg string `json:"status_msg"`
+    }
+)
+
+type (
+    GetFollowlistReq{
+        Token string `json:"token"`
+        UserId int64  `json:"user_id"`
+    }
+    GetFollowlistResp {
+        StatusMsg string `json:"status_msg"`
+        UserList []Follow  `json:"user_list"`
+    }
+)
+
+type (
+    GetFanlistReq{
+        Token string `json:"token"`
+        UserId int64 `json:"user_id"`
+    }
+    GetFanlistResp{
+        StatusMsg string `json:"status_msg"`
+        UserList []Follow `json:"user_list"`
+    }
+)
+
+type (
+    GetFriendsReq {
+        Token string `json:"token"`
+        UserId int64 `json:"user_id"`
+    }
+    GetFriendsResp {
+        StatusMsg string `json:"status_msg"`
+        UserList []Friend `json:"user_list"`
+    }
+)

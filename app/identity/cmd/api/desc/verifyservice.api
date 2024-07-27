@@ -1,0 +1,22 @@
+syntax = "v1"
+
+info (
+	title:   "鉴权服务"
+	author:  "yeye"
+	version: "v1"
+)
+
+import (
+	"verify/verify.api"
+)
+
+@server (
+	group:  verify
+	prefix: identity
+)
+service verify-api {
+	@doc "验证请求token"
+	@handler verifyToken
+	get /verify/token returns (VerifyTokenResp)
+}
+

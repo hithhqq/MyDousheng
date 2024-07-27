@@ -1,0 +1,56 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+message User1 {
+    int64 userId =1;
+    string username = 2;
+    int64 followingCount = 3;
+    string avator = 4;
+    string backgroundImage = 5;
+    string signature = 6;
+    int64 totalFavorited = 7;
+    int64 workCount = 8;
+    int64 favoriteCount = 9;
+    int64 createTime = 10;
+    bool  isFollow = 11;
+}  
+
+message Video {
+    string Id = 1; // 视频唯一标识
+    User1 Author = 2; // 视频作者信息
+    string PlayUrl = 3; // 视频播放地址
+    string CoverUrl = 4; // 视频封面地址
+    int64 FavoriteCount = 5; // 视频的点赞总数
+    int64 CommentCount = 6; // 视频的评论总数
+    bool IsFavorite = 7; // true-已点赞，false-未点赞
+    string Title = 8; // 视频标题
+}
+
+message PublishVideoReq {
+    int64 UserId = 1;
+    Video Data = 2;
+}
+
+message PublishVideoResp {
+
+}
+
+message getVideolistReq {
+    int64 Cursor = 1;
+    int64 Ps = 2;
+    string VideoId = 3;
+}
+
+message getVideolistResp {
+    bool IsEnd = 1;
+    int64 TimeStamp = 2;
+    string VideoId = 3;
+    Video videos = 4;
+}
+
+service videoservice{
+    rpc publishVideo (PublishVideoReq) returns (PublishVideoResp);
+    rpc publishVideoRollback (PublishVideoReq) returns (PublishVideoResp);
+    rpc getVideolsit (getVideolistReq) returns (getVideolistResp);
+}

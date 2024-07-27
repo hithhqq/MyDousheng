@@ -1,0 +1,63 @@
+syntax = "v1"
+
+info (
+	title:   "用户实例"
+	author:  "yeye"
+	version: "v1"
+)
+
+type User {
+	UserId         int64  `json:"id"` // 用户的唯一标识
+	Username       string `json:"name"` // 用户名称
+	FollowingCount int64    `json:"follow_count"` // 关注总数
+	FollowerCount  int64    `json:"follower_count"` // 粉丝总数
+	Avator         string `json:"avator"` // 头像
+	BackgroundImage string `json:"background_image"`
+	IsFollow 		bool   `json:"is_follow"` // true以关注, false未关注
+	Signature      string `json:"signature"` // 个人简介
+	TotalFavorited int64  `json:"total_favorited"` // 获赞数
+	WorkCount 	   int64     `json:"work_count"` // 作品总数
+	FavoriteCount  int64      `json:"favorite_count"` // 点赞数
+}
+
+// 用户登录
+type (
+	UserLoginReq {
+		Username string `json:"username"` // 用户名
+		Password string `json:"password"` // 密码
+	}
+	UserLoginRsp {
+		StatusCode int64  `json:"status_code"` // 状态码
+		StatusMsg  string `json:"status_msg"` //状态信息
+		UserId     int64 `json:"user_id"` // 用户名Id
+		Token      string `json:"token"` //token
+	}
+)
+
+// 用户注册
+type (
+	UserRegisterReq {
+		Username string `json:"username"` // 用户名
+		Password string `json:"password"` // 用户密码
+	}
+	UserRegisterRsp {
+		StatusCode int64  `json:"status_code"` // 状态码
+		StatusMsg  string `json:"status_msg"` //状态信息
+		UserId     int64 `json:"user_id"` // 用户名Id
+		Token      string `json:"token"` //token
+	}
+)
+
+// 用户信息
+type (
+	UserInfoReq {
+		UserId int64 `json:"user_id"` // 用户Id
+		Token string `json:"token"`
+	}
+	UserInfoRsp {
+		StatusCode int64 `json:"status_code"` // 状态码
+		StatusMsg string `json:"status_msg"`//返回状态描述
+		UserInfo   User `json:"userInfo"` // 用户信息
+	}
+)
+

@@ -1,0 +1,22 @@
+Name: video-api
+Host: 0.0.0.0
+Port: 1106
+Mode: dev
+
+Log:
+  ServiceName: video-api
+  Level: error
+  Encoding: plain
+
+VideoserviceRpcConf:
+  Etcd:
+   Hosts:
+   - 127.0.0.1:2379
+   Key: video.rpc
+  NonBlock: true
+UserServiceRpcConf:
+  Etcd:
+    Hosts:
+    - 127.0.0.1:2379
+    Key: user.rpc
+  NonBlock: true

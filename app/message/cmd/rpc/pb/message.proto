@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option go_package = "./pb";
+
+package pb;
+
+message Message {
+    int64 id = 1;
+    int64 fromUserId = 2;
+    int64 toUserId = 3;
+    string content = 4;
+    int64 createTime = 5;
+}
+
+message SendMessageReq {
+    string token = 1;
+    int64 fromUserId = 2;
+    int64 toUserId = 3;
+    int64 actionType = 4;
+    string content = 5;
+}
+
+message SendMessageResp {
+    int64 statusCode = 1;
+}
+
+message GetMessagesReq {
+    string token = 1;
+    int64 toUserId = 2;
+    int64 fromUserId = 3;
+}
+
+message GetMessagesResp {
+    string statusMsg = 1;
+    repeated Message messages = 2;
+}
+
+service messageservice{
+    rpc sendMessage(SendMessageReq) returns (SendMessageResp);
+    rpc getMessageList(GetMessagesReq) returns (GetMessagesResp);
+}

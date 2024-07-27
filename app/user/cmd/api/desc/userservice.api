@@ -1,0 +1,38 @@
+info (
+	title:   "用户服务"
+	desc:    "用户服务"
+	author:  "yeye"
+	version: "v1"
+)
+
+import (
+	"user/user.api"
+)
+
+syntax = "v1"
+
+@server (
+	group:  user
+	prefix: /douyin/user
+)
+service user-api {
+	@doc "register"
+	@handler userRegister
+	post /register (UserRegisterReq) returns (UserRegisterRsp)
+
+	@doc "login"
+	@handler userLogin
+	post /login (UserLoginReq) returns (UserLoginRsp)
+}
+
+@server (
+	group:  user
+	prefix: /douyin
+// jwt:    JwtAuth
+)
+service user-api {
+	@doc "userinfo"
+	@handler getUserInfo
+	get /user (UserInfoReq) returns (UserInfoRsp)
+}
+

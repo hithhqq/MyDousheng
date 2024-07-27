@@ -1,0 +1,16 @@
+Name: identity.rpc
+ListenOn: 0.0.0.0:9001
+Etcd:
+  Hosts:
+  - 127.0.0.1:2379
+  Key: identity.rpc
+Log:
+  ServiceName: identity-rpc
+  Level: error
+JwtAuth:
+  AccessSecret: ae0536f9-6430-4606-8e13-5a19ed505da0
+  AccessExpire: 86400
+Redis:
+  Host: 127.0.0.1:6379
+  Type: node
+  Key:  identity-rpc

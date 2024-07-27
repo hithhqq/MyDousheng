@@ -1,0 +1,17 @@
+Name: user-api
+Host: 0.0.0.0
+Port: 1105
+Mode: dev
+
+JwtAuth:
+  AccessSecret: ae0536f9-6430-4606-8e13-5a19ed505da0
+Log:
+  ServiceName: user-api
+  Level: error
+  Encoding: plain
+UserserviceRpcConf:
+  Etcd:
+    Hosts:
+    - 127.0.0.1:2379
+    Key: user.rpc
+  NonBlock: true

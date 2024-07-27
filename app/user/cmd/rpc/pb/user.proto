@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+option go_package = "./pb";
+
+package pb;
+
+
+message User {
+    int64 userId =1;
+    string username = 2;
+    int64 followingCount = 3;
+    string avator = 4;
+    string backgroundImage = 5;
+    string signature = 6;
+    int64 totalFavorited = 7;
+    int64 workCount = 8;
+    int64 favoriteCount = 9;
+    int64 createTime = 10;
+    bool  isFollow = 11;
+}   
+
+message UserAuth {
+    int64  userId = 1;
+    string authType = 2;
+    string authKey = 3;
+}
+
+message RegisterReq {
+    string username = 1;
+    string password = 2;
+}
+
+message RegisterResp {
+    int32 status_code = 1;
+    string status_msg = 2;
+    int64 userid = 3;
+    string token = 4;
+}
+message LoginReq {
+    string username = 1;
+    string password = 2;
+}
+message LoginResp {
+    int32 status_code = 1;
+    string status_msg = 2;
+    int64 userid = 3;
+    string token = 4;
+}
+message GetUserInfoReq {
+    int64 userId = 1;
+    string token = 2;
+}
+message GetUserInfoResp {
+    int64 statusCode = 1;
+    string statusMsg = 2;
+    User userInfo =3;
+
+}
+
+// message GenerateTokenReq {
+//     int64 userId = 1;
+// }
+// message GenerateTokenResp {
+//     string accessToken = 1;
+//     int64  accessExpire = 2;
+//     int64  refreshAfter = 3;
+// }
+message UpdateUserReq {
+    int64 followerId = 1;
+    int64 followingId = 2;
+    int64 type = 3;
+}
+message UpdateUserResp {
+    int64 statusCode = 1;
+}
+message UpdateWorkCountReq{
+    int64 userId = 1;
+}  
+message UpdateWorkCountResp{
+    int64 statusCode = 1;
+}
+service userservice {
+    rpc login(LoginReq) returns(LoginResp);
+    rpc register(RegisterReq) returns(RegisterResp);
+    rpc getUserInfo(GetUserInfoReq) returns(GetUserInfoResp);
+    // rpc generateToken(GenerateTokenReq) returns(GenerateTokenResp);
+    rpc updateAttention(UpdateUserReq) returns(UpdateUserResp);
+    rpc updateAttentionRollback(UpdateUserReq) returns(UpdateUserResp);
+    rpc updateWorkcount(UpdateWorkCountReq) returns (UpdateWorkCountResp);
+    rpc updateWorkcountRollback(UpdateWorkCountReq) returns (UpdateWorkCountResp);
+}

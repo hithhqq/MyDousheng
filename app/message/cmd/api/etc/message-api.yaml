@@ -1,0 +1,17 @@
+Name: message-api
+Host: 0.0.0.0
+Port: 1103
+Mode: dev
+
+JwtAuth:
+  AccessSecret: ae0536f9-6430-4606-8e13-5a19ed505da0
+Log:
+  ServiceName: message-api
+  Level: error
+  Encoding: plain
+MessageServiceRpcConf:
+  Etcd:
+    Hosts:
+    - 127.0.0.1:2379
+    Key: message.rpc
+  NonBlock: true

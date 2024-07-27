@@ -1,0 +1,27 @@
+syntax = "v1"
+
+info (
+	title:   "消息服务"
+	author:  "yeye"
+	version: "v1"
+)
+
+import (
+	"message/message.api"
+)
+
+@server (
+	group:      message
+	prefix:     /douyin/message
+	middleware: JwtauthMiddleware
+)
+service message-api {
+	@doc "sendmessage"
+	@handler sendmessage
+	post /action (SendMessageReq) returns (SendMessageResp)
+
+	@doc "getmessagelist"
+	@handler getmessagelist
+	get /chat (GetMessagesReq) returns (GetMessagesResp)
+}
+

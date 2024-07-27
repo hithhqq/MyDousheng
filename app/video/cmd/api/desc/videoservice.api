@@ -1,0 +1,30 @@
+syntax = "v1"
+
+info (
+	title:   "视频服务"
+	author:  "yeye"
+	version: "v1"
+)
+
+import (
+	"video/video.api"
+)
+
+@server (
+	group:  video
+	prefix: /douyin
+)
+service video-api {
+	@doc "getfeed"
+	@handler getFeed
+	get /feed (GetFeedReq) returns (GetFeedResp)
+
+	@doc "publishvideo"
+	@handler publishvideo
+	post /publish/action (PublishVideoReq) returns (PublishVideoResp)
+
+	@doc "getvideolist"
+	@handler getvideolist
+	get /publish/list (GetVideoListReq) returns (GetVideoListResp)
+}
+
